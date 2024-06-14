@@ -18,9 +18,10 @@ const MyReferral = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View className="px-4">
-          <Text className="py-4">My Referrals</Text>
-
+        <View className="px-4 bg-primary">
+          <Text className="py-4 text-white text-lg font-psemibold">
+            My Referrals
+          </Text>
           <View className="justify-between items-center flex-row w-full">
             <FormField
               placeholder="Search by name"
@@ -42,12 +43,12 @@ const MyReferral = () => {
               <View className="flex items-center justify-between w-full flex-row py-2">
                 <View className="flex items-center space-x-4 flex-row">
                   <Image
-                    source={icons.profile}
+                    source={{ uri: "https://i.pravatar.cc/300" }}
                     className="w-8 h-8 rounded-full"
                     resizeMode="contain"
                   />
                   <View className="justify-between">
-                    <Text className="text-base font-pmedium">
+                    <Text className="text-base font-pregular text-white">
                       {referral.name}
                     </Text>
                     <Text className="text-xs text-gray-500">

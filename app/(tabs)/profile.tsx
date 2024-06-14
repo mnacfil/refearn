@@ -4,9 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Profile = () => {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View>
+    <SafeAreaView className="h-full">
+      <ScrollView contentContainerStyle={{ height: "100%" }}>
+        <View className="items-center justify-center h-full w-full">
           <Text>My Profile</Text>
         </View>
       </ScrollView>

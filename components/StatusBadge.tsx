@@ -17,9 +17,7 @@ const StatusBadge = ({ type, title }: StatusBadgeProps) => {
     <View
       className={`min-h-[46px] items-center justify-center min-w-[90px] rounded-xl ${bg[type]}`}
     >
-      <Text className="capitalize text-white text-sm font-pregular">
-        {title}
-      </Text>
+      <Text className="capitalize text-sm font-pregular">{title}</Text>
     </View>
   );
 };
