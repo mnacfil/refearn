@@ -1,9 +1,15 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Linking } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "@/components/CustomButton";
+import { CustomModal } from "@/components/Modal";
 
 const Home = () => {
+  const handleInviteViaWhatsApp = (message: string) => {
+    Linking.openURL(`whatsapp://send?text=${message}&phone=09485803262`);
+  };
+  const handleInviteViber = () => {};
+
   return (
     <SafeAreaView className="h-full bg-primary">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
@@ -35,19 +41,17 @@ const Home = () => {
           </View>
 
           {/* Todo Other content */}
-
-          <View className="flex-row">
-            <CustomButton
-              title="Invite via WhatsApp"
-              containerStyles="bg-green-400 flex-1"
-              handlePress={() => {}}
-            />
-            <CustomButton
-              title="Other"
-              containerStyles="bg-gray-100 min-w-[80px]"
-              handlePress={() => {}}
-            />
-          </View>
+          <CustomModal
+            message="open this link on your whats app"
+            handlePress={handleInviteViaWhatsApp}
+            type="whatsapp"
+          />
+          <CustomModal
+            message="Open this link in your viber"
+            handlePress={() => {}}
+            type="viber"
+          />
+          {/* </View> */}
         </View>
       </ScrollView>
     </SafeAreaView>
