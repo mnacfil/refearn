@@ -14,7 +14,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "package": "com.mn.refearn"
+      "package": "com.mn.refearn",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": ["whatsapp", "whatsapp-api"]
+      }
     },
     "android": {
       "adaptiveIcon": {

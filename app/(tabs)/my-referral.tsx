@@ -17,8 +17,8 @@ const MyReferral = () => {
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        <View className="px-4 bg-primary">
+      <ScrollView contentContainerStyle={{ height: "auto" }}>
+        <View className="px-4 bg-primary h-full">
           <Text className="py-4 text-white text-lg font-psemibold">
             My Referrals
           </Text>
@@ -40,7 +40,10 @@ const MyReferral = () => {
 
           <View className="mt-8 divide-y divide-solid divide-gray-300">
             {referrals.map((referral) => (
-              <View className="flex items-center justify-between w-full flex-row py-2">
+              <View
+                className="flex items-center justify-between w-full flex-row py-2"
+                key={referral.name}
+              >
                 <View className="flex items-center space-x-4 flex-row">
                   <Image
                     source={{ uri: "https://i.pravatar.cc/300" }}

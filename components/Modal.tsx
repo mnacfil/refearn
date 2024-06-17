@@ -2,22 +2,29 @@ import { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import FormField from "./FormField";
 
+const myLink = "https://github.com/mnacfil?tab=repositories";
+
 type CustomModalProps = {
-  message: string;
-  handlePress: (message: string) => void;
+  value: string;
+  phone: string;
+  onChange: (e: any) => void;
+  onChangeNumber: (e: any) => void;
+  handlePress: () => void;
   otherStyles?: string;
   type: "viber" | "whatsapp";
+  placeholder?: string;
 };
 
 export const CustomModal = ({
-  message,
+  value,
   type,
+  phone,
+  placeholder,
   handlePress,
+  onChange,
+  onChangeNumber,
 }: CustomModalProps) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [form, setForm] = useState({
-    message: "",
-  });
 
   const bg = type === "viber" ? "bg-violet-500" : "bg-green-500";
 
@@ -35,22 +42,35 @@ export const CustomModal = ({
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <FormField
-              title="Message"
-              value={form.message}
-              handleChangeText={(e: any) => setForm({ ...form, message: e })}
+              title="Message or Link"
+              value={value}
+              handleChangeText={(e: string) => onChange(e)}
               otherStyles="my-7"
               keyBoardType="message"
-              placeholder="Invite link..."
+              placeholder={placeholder}
+            />
+
+            <FormField
+              title="Number"
+              value={phone}
+              handleChangeText={(e: string) => onChangeNumber(e)}
+              otherStyles="my-7"
+              keyBoardType="message"
+              placeholder="1234567890..."
             />
             <View className="flex-row gap-2">
-              <Pressable onPress={() => setModalVisible(!modalVisible)}>
+              <Pressable
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              >
                 <View className="bg-primary rounded-md min-w-[100px] text-center min-h-[40px] flex justify-center items-center h-min">
                   <Text className="font-pregular text-white uppercase text-base ">
                     close
                   </Text>
                 </View>
               </Pressable>
-              <Pressable onPress={() => handlePress(message)}>
+              <Pressable onPress={() => handlePress()}>
                 <View
                   className={`${bg} min-h-[40px] flex justify-center items-center min-w-[100px] rounded-md`}
                 >

@@ -23,7 +23,7 @@ const FormField = ({
   return (
     <View className={`space-y-2 ${otherStyles}`}>
       {title && (
-        <Text className="text-base text-gray-100 font-pmedium">{title}</Text>
+        <Text className="text-base text-gray-500 font-pmedium">{title}</Text>
       )}
       <View className="border-2 border-black-100 w-full h-16 bg-black-100 rounded-2xl focus:border-secondary items-center flex-row px-4">
         <TextInput

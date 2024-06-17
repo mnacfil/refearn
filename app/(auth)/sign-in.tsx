@@ -17,24 +17,22 @@ const SignIn = () => {
   const { setUser, setIsLoggedIn } = useGlobal();
 
   const submit = async () => {
-    if (!form.email || !form.password) {
-      Alert.alert("Error", "Please fill in all the fields");
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const result = await signIn(form.email, form.password);
-      setUser(result);
-      setIsLoggedIn(true);
-
-      Alert.alert("Success", "User signed successfully");
-      router.replace("/home");
-    } catch (error: any) {
-      Alert.alert("Error", error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    router.replace("/home");
+    // if (form.email === "" || form.password === "") {
+    //   Alert.alert("Error", "Please fill in all the fields");
+    // }
+    // setIsSubmitting(true);
+    // try {
+    //   const result = await signIn(form.email, form.password);
+    //   setUser(result);
+    //   setIsLoggedIn(true);
+    //   Alert.alert("Success", "User signed successfully");
+    //   router.push("/home");
+    // } catch (error: any) {
+    //   Alert.alert("Error", error);
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   return (

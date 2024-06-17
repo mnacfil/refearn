@@ -1,12 +1,45 @@
-import { View, Text, ScrollView, Linking } from "react-native";
-import React from "react";
+import { View, Text, ScrollView, Linking, Alert } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "@/components/CustomButton";
 import { CustomModal } from "@/components/Modal";
 
 const Home = () => {
-  const handleInviteViaWhatsApp = (message: string) => {
-    Linking.openURL(`whatsapp://send?text=${message}&phone=09485803262`);
+  const [form, setForm] = useState({
+    whatsapp: "",
+    viber: "",
+    number: "",
+  });
+
+  const handleChangeOnWhatsApp = (e: string) => {
+    setForm({ ...form, whatsapp: e });
+  };
+
+  const handleChangeOnViber = (e: string) => {
+    setForm({ ...form, viber: e });
+  };
+
+  const handleChangeOnNumber = (e: string) => {
+    setForm({ ...form, number: e });
+  };
+
+  const reset = () => {
+    setForm({ whatsapp: "", viber: "", number: "" });
+  };
+
+  const handleInviteViaWhatsApp = () => {
+    const encodedMessage = encodeURIComponent(form.whatsapp);
+    const url = form.number
+      ? `whatsapp://send?phone=${form.number}&text=${encodedMessage}`
+      : `whatsapp://send?text=${encodedMessage}`;
+
+    console.log("Attempting to open URL:", url); // Debugging step
+
+    Linking.openURL(url).catch((err) => {
+      console.error("An error occurred", err);
+      Alert.alert("An error occurred", "Please ensure WhatsApp is installed.");
+    });
+    reset();
   };
   const handleInviteViber = () => {};
 
@@ -42,14 +75,22 @@ const Home = () => {
 
           {/* Todo Other content */}
           <CustomModal
-            message="open this link on your whats app"
+            value={form.whatsapp}
+            onChange={handleChangeOnWhatsApp}
+            phone={form.number}
+            onChangeNumber={handleChangeOnNumber}
             handlePress={handleInviteViaWhatsApp}
             type="whatsapp"
+            placeholder="Invite link here or message..."
           />
           <CustomModal
-            message="Open this link in your viber"
+            value={form.viber}
+            onChange={handleChangeOnViber}
+            phone={form.number}
+            onChangeNumber={handleChangeOnNumber}
             handlePress={() => {}}
             type="viber"
+            placeholder="Invite link here or message..."
           />
           {/* </View> */}
         </View>
