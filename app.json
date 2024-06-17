@@ -16,14 +16,25 @@
       "supportsTablet": true,
       "package": "com.mn.refearn",
       "infoPlist": {
-        "LSApplicationQueriesSchemes": ["whatsapp", "whatsapp-api"]
+        "LSApplicationQueriesSchemes": ["whatsapp", "whatsapp-api", "viber"]
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "viber"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
     },
     "web": {
       "bundler": "metro",

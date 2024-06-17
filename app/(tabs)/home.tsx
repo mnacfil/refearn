@@ -41,7 +41,20 @@ const Home = () => {
     });
     reset();
   };
-  const handleInviteViber = () => {};
+  const handleInviteViber = () => {
+    const encodedMessage = encodeURIComponent(form.viber);
+    const url = form.number
+      ? `viber://chat?number=${form.number}`
+      : `viber://chat?text=${encodedMessage}`;
+
+    console.log("Attempting to open URL:", url);
+
+    Linking.openURL(url).catch((err) => {
+      console.error("An error occurred", err);
+      Alert.alert("An error occurred", "Please ensure Viber is installed.");
+    });
+    reset();
+  };
 
   return (
     <SafeAreaView className="h-full bg-primary">
@@ -88,7 +101,7 @@ const Home = () => {
             onChange={handleChangeOnViber}
             phone={form.number}
             onChangeNumber={handleChangeOnNumber}
-            handlePress={() => {}}
+            handlePress={handleInviteViber}
             type="viber"
             placeholder="Invite link here or message..."
           />
